@@ -1,0 +1,5 @@
+# HTTPS in front of the booking API (Caddy gets the certificate automatically).
+# Point a DNS name at the server first, then replace the name below.
+booking.example.com {
+	reverse_proxy 127.0.0.1:8787
+}

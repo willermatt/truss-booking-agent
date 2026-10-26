@@ -1,0 +1,29 @@
+{
+  "name": "truss-booking-agent",
+  "version": "0.1.0",
+  "description": "Truss Home Inspections booking agent for Spectora \u2014 live submissions disabled by default",
+  "scripts": {
+    "test": "vitest run",
+    "test:verbose": "vitest run --reporter=verbose",
+    "migrate": "tsx src/migrate.ts",
+    "owner": "tsx src/owner/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "worker": "tsx src/worker/cli.ts",
+    "api": "tsx src/api/main.ts"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "pg": "^8.23.1",
+    "playwright": "1.63.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "private": true,
+  "type": "module"
+}

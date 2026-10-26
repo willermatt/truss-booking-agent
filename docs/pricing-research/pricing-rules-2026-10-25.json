@@ -1,0 +1,669 @@
+{
+  "verifiedAt": "2026-10-25",
+  "about": "Deterministic price rules for the Review check. Base and add-on prices live in services.json; the fees Spectora adds on its servers are recorded here. Only rules marked confirmed are used: a booking whose price needs an unconfirmed rule, or whose inputs fall outside every rule (or inside two), stops before admission. Ranges use Spectora's semantics: the lower bound is exclusive and the upper bound inclusive ('sqft 500 - 1000' is 501-1000 sq ft); upTo null means 'and above'.",
+  "method": "Measured on 2026-10-25 against Spectora's own price calculation on the Truss scheduler (POST /api/v1/public/services/{id}/calculate_charge and /service_add_ons/{id}/calculate_charge, the request the page sends at Step 1's NEXT), with the scheduler page open and never past Step 2: no time chosen, no contact entered, nothing submitted. 325 calculations, all HTTP 200, tax $0, recorded one per row in pricing-observations-2026-10-25.csv with Spectora's own fee lines. A rule is confirmed when it was observed at its boundaries and inside it, and Spectora's fee breakdown names the range; a no-fee region is confirmed where it was sampled at its boundaries and across it. The first two rows were first seen from the page's own Step 1 request (1,800 sq ft built 1954 = $425, as on the Phase 0 Review of 2026-10-24; 2,001 sq ft built 1961 slab = $400); the rest repeat that request with other inputs. Base prices matched services.json (Residential $300, 1 Year Warranty $250, New Construction $275, Condo $225); Multi-Family returns $0 'Call for Pricing' and is never booked.",
+  "services": {
+    "residential": {
+      "squareFeetFees": {
+        "ranges": [
+          {
+            "over": 0,
+            "upTo": 500,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed 100, 499, 500 sq ft: no square-footage fee"
+          },
+          {
+            "over": 500,
+            "upTo": 1000,
+            "feeUsd": 25,
+            "confirmed": true,
+            "evidence": "observed 501, 999, 1000 sq ft: +$25 (Spectora: 'sqft 500 - 1000')"
+          },
+          {
+            "over": 1000,
+            "upTo": 1500,
+            "feeUsd": 50,
+            "confirmed": true,
+            "evidence": "observed 1001, 1499, 1500 sq ft: +$50 (Spectora: 'sqft 1000 - 1500')"
+          },
+          {
+            "over": 1500,
+            "upTo": 2000,
+            "feeUsd": 75,
+            "confirmed": true,
+            "evidence": "observed 1501, 1800, 1999, 2000 sq ft: +$75 (Spectora: 'sqft 1500 - 2000')"
+          },
+          {
+            "over": 2000,
+            "upTo": 2500,
+            "feeUsd": 100,
+            "confirmed": true,
+            "evidence": "observed 2001, 2499, 2500 sq ft: +$100 (Spectora: 'sqft 2000 - 2500')"
+          },
+          {
+            "over": 2500,
+            "upTo": 3000,
+            "feeUsd": 125,
+            "confirmed": true,
+            "evidence": "observed 2501, 2750, 3000 sq ft: +$125 (Spectora: 'sqft 2500 - 3000')"
+          },
+          {
+            "over": 3000,
+            "upTo": 3500,
+            "feeUsd": 150,
+            "confirmed": true,
+            "evidence": "observed 3001, 3500 sq ft: +$150 (Spectora: 'sqft 3000 - 3500')"
+          },
+          {
+            "over": 3500,
+            "upTo": 4000,
+            "feeUsd": 175,
+            "confirmed": true,
+            "evidence": "observed 3501, 4000 sq ft: +$175 (Spectora: 'sqft 3500 - 4000')"
+          },
+          {
+            "over": 4000,
+            "upTo": 4500,
+            "feeUsd": 200,
+            "confirmed": true,
+            "evidence": "observed 4001, 4500 sq ft: +$200 (Spectora: 'sqft 4000 - 4500')"
+          },
+          {
+            "over": 4500,
+            "upTo": 5000,
+            "feeUsd": 225,
+            "confirmed": true,
+            "evidence": "observed 4501, 5000 sq ft: +$225 (Spectora: 'sqft 4500 - 5000')"
+          },
+          {
+            "over": 5000,
+            "upTo": 5500,
+            "feeUsd": 250,
+            "confirmed": true,
+            "evidence": "observed 5001, 5500 sq ft: +$250 (Spectora: 'sqft 5000 - 5500')"
+          },
+          {
+            "over": 5500,
+            "upTo": 6000,
+            "feeUsd": 275,
+            "confirmed": true,
+            "evidence": "observed 5501, 6000 sq ft: +$275 (Spectora: 'sqft 5500 - 6000')"
+          },
+          {
+            "over": 6000,
+            "upTo": 6500,
+            "feeUsd": 300,
+            "confirmed": true,
+            "evidence": "observed 6001, 6500 sq ft: +$300 (Spectora: 'sqft 6000 - 6500')"
+          },
+          {
+            "over": 6500,
+            "upTo": 7000,
+            "feeUsd": 325,
+            "confirmed": true,
+            "evidence": "observed 6501, 7000 sq ft: +$325 (Spectora: 'sqft 6500 - 7000')"
+          },
+          {
+            "over": 7000,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "observed 7001, 7499, 7500, 7501, 7999, 8000, 10000 sq ft: base price only. Spectora has no square-footage range above 7000 sq ft, so it adds no fee at all; not relied on until the owner adds ranges or confirms that larger homes should be base price"
+          }
+        ]
+      },
+      "yearBuiltFees": {
+        "ranges": [
+          {
+            "over": 1799,
+            "upTo": 1900,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed built 1800, 1850, 1899, 1900: no year-built fee"
+          },
+          {
+            "over": 1900,
+            "upTo": 1960,
+            "feeUsd": 50,
+            "confirmed": true,
+            "evidence": "observed built 1901, 1930, 1950, 1954, 1955, 1959, 1960: +$50 (Spectora: 'year 1900 - 1960')"
+          },
+          {
+            "over": 1960,
+            "upTo": 2030,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed built 1961, 1962, 1970, 1980, 1990, 2000, 2010, 2020, 2025, 2026, 2027, 2030: no year-built fee"
+          },
+          {
+            "over": 2030,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "not observed (no home is built after 2030 yet)"
+          }
+        ]
+      },
+      "foundationFees": {
+        "confirmed": true,
+        "feesUsd": {
+          "basement": 0,
+          "slab": 0,
+          "crawlspace": 0
+        },
+        "evidence": "observed basement at 1000 sq ft built 1900; basement at 1800 sq ft built 1954; basement at 3001 sq ft built 1955; basement at 500 sq ft built 2000; crawlspace at 1800 sq ft built 1954; crawlspace at 500 sq ft built 2000; crawlspace at 6500 sq ft built 1901; slab at 1800 sq ft built 1954; slab at 2001 sq ft built 1961; slab at 500 sq ft built 2000; slab at 7000 sq ft built 1960: no foundation fee (the price equals the same request with no foundation)"
+      },
+      "mileageFees": {
+        "none": false,
+        "ranges": [
+          {
+            "over": 60,
+            "upTo": 80,
+            "feeUsd": 50,
+            "confirmed": true,
+            "evidence": "observed at Casa Grande 85122, Florence 85132: +$50 (Spectora: 'mileage 60 - 80')"
+          },
+          {
+            "over": 80,
+            "upTo": 100,
+            "feeUsd": 100,
+            "confirmed": true,
+            "evidence": "observed at Eloy 85131, Gila Bend 85337, Payson 85541, Prescott 86301: +$100 (Spectora: 'mileage 80 - 100')"
+          },
+          {
+            "over": 100,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "observed at Flagstaff 86001, Marana 85653, Sierra Vista 85635, Tucson 85701, Yuma 85364: no mileage fee. Spectora has no mileage range above 100 miles, so it adds none at all; not relied on"
+          }
+        ],
+        "noFeeZips": [
+          {
+            "zip": "85007",
+            "confirmed": false,
+            "evidence": "one sample address (1700 W Washington St, Phoenix, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85050",
+            "confirmed": false,
+            "evidence": "one sample address (21001 N Tatum Blvd, Phoenix, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85119",
+            "confirmed": false,
+            "evidence": "one sample address (300 E Superstition Blvd, Apache Junction, AZ): no mileage fee on 2026-10-25. Edge of the area: parts of this ZIP may be more than 60 driving miles away; confirm only after checking"
+          },
+          {
+            "zip": "85138",
+            "confirmed": false,
+            "evidence": "one sample address (39700 W Civic Center Plaza, Maricopa, AZ): no mileage fee on 2026-10-25. Edge of the area: parts of this ZIP may be more than 60 driving miles away; confirm only after checking"
+          },
+          {
+            "zip": "85142",
+            "confirmed": false,
+            "evidence": "one sample address (22358 S Ellsworth Rd, Queen Creek, AZ): no mileage fee on 2026-10-25. Edge of the area: parts of this ZIP may be more than 60 driving miles away; confirm only after checking"
+          },
+          {
+            "zip": "85201",
+            "confirmed": false,
+            "evidence": "one sample address (20 E Main St, Mesa, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85225",
+            "confirmed": false,
+            "evidence": "one sample address (175 S Arizona Ave, Chandler, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85251",
+            "confirmed": false,
+            "evidence": "one sample address (3939 N Drinkwater Blvd, Scottsdale, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85268",
+            "confirmed": false,
+            "evidence": "one sample address (16705 E Avenue of the Fountains, Fountain Hills, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85281",
+            "confirmed": false,
+            "evidence": "one sample address (31 E 5th St, Tempe, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85296",
+            "confirmed": false,
+            "evidence": "one sample address (50 E Civic Center Dr, Gilbert, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85301",
+            "confirmed": false,
+            "evidence": "one sample address (5850 W Glendale Ave, Glendale, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85323",
+            "confirmed": false,
+            "evidence": "one sample address (11465 W Civic Center Dr, Avondale, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85326",
+            "confirmed": false,
+            "evidence": "one sample address (530 E Monroe Ave, Buckeye, AZ): no mileage fee on 2026-10-25. Edge of the area: parts of this ZIP may be more than 60 driving miles away; confirm only after checking"
+          },
+          {
+            "zip": "85331",
+            "confirmed": false,
+            "evidence": "one sample address (37622 N Cave Creek Rd, Cave Creek, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85345",
+            "confirmed": false,
+            "evidence": "one sample address (8401 W Monroe St, Peoria, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85374",
+            "confirmed": false,
+            "evidence": "one sample address (16000 N Civic Center Plaza, Surprise, AZ): no mileage fee on 2026-10-25"
+          },
+          {
+            "zip": "85390",
+            "confirmed": false,
+            "evidence": "one sample address (155 N Tegner St, Wickenburg, AZ): no mileage fee on 2026-10-25. Edge of the area: parts of this ZIP may be more than 60 driving miles away; confirm only after checking"
+          },
+          {
+            "zip": "85395",
+            "confirmed": false,
+            "evidence": "one sample address (1900 N Civic Square, Goodyear, AZ): no mileage fee on 2026-10-25"
+          }
+        ],
+        "evidence": "Spectora adds a fee by its own distance calculation from a starting address (the scheduler's company record gives 2550 E Rose Garden Ln, Phoenix 85050; whether the modifier measures from it or from an inspector's home address is not visible from the scheduler; the observed tiers fit driving distance rather than straight-line distance). The agent cannot reproduce that distance, so a Residential price is computed only in a ZIP listed here and confirmed by the owner as entirely inside the no-fee distance (60 driving miles on the observed ranges). Each ZIP was seen with no fee at one sample address; that is not enough for the whole ZIP, so none is confirmed yet."
+      },
+      "addOnPrices": {
+        "flat": true,
+        "confirmed": true,
+        "evidence": "observed Termite Inspection - Free [7452] $0 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007) | Pool/Spa Inspection - $50 [7451] $50 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007; 1800 sq ft built 1954 ZIP 85122; 1800 sq ft built 1954 ZIP 85131) | Residential Warranty Services - $25 [10441] $25 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007; 1800 sq ft built 1954 ZIP 85131) | Mold Inspection - $200 [17336] $200 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007; 1800 sq ft built 1954 ZIP 85131)"
+      }
+    },
+    "one_year_warranty": {
+      "squareFeetFees": {
+        "ranges": [
+          {
+            "over": 0,
+            "upTo": 500,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed 100, 500 sq ft: no square-footage fee"
+          },
+          {
+            "over": 500,
+            "upTo": 1000,
+            "feeUsd": 25,
+            "confirmed": true,
+            "evidence": "observed 501, 1000 sq ft: +$25 (Spectora: 'sqft 500 - 1000')"
+          },
+          {
+            "over": 1000,
+            "upTo": 1500,
+            "feeUsd": 50,
+            "confirmed": true,
+            "evidence": "observed 1001, 1500 sq ft: +$50 (Spectora: 'sqft 1000 - 1500')"
+          },
+          {
+            "over": 1500,
+            "upTo": 2000,
+            "feeUsd": 75,
+            "confirmed": true,
+            "evidence": "observed 1501, 1800, 2000 sq ft: +$75 (Spectora: 'sqft 1500 - 2000')"
+          },
+          {
+            "over": 2000,
+            "upTo": 2500,
+            "feeUsd": 100,
+            "confirmed": true,
+            "evidence": "observed 2001, 2500 sq ft: +$100 (Spectora: 'sqft 2000 - 2500')"
+          },
+          {
+            "over": 2500,
+            "upTo": 3000,
+            "feeUsd": 125,
+            "confirmed": true,
+            "evidence": "observed 2501, 2750, 3000 sq ft: +$125 (Spectora: 'sqft 2500 - 3000')"
+          },
+          {
+            "over": 3000,
+            "upTo": 3500,
+            "feeUsd": 150,
+            "confirmed": true,
+            "evidence": "observed 3001, 3500 sq ft: +$150 (Spectora: 'sqft 3000 - 3500')"
+          },
+          {
+            "over": 3500,
+            "upTo": 4000,
+            "feeUsd": 175,
+            "confirmed": true,
+            "evidence": "observed 3501, 4000 sq ft: +$175 (Spectora: 'sqft 3500 - 4000')"
+          },
+          {
+            "over": 4000,
+            "upTo": 4500,
+            "feeUsd": 200,
+            "confirmed": true,
+            "evidence": "observed 4001, 4500 sq ft: +$200 (Spectora: 'sqft 4000 - 4500')"
+          },
+          {
+            "over": 4500,
+            "upTo": 5000,
+            "feeUsd": 225,
+            "confirmed": true,
+            "evidence": "observed 4501, 5000 sq ft: +$225 (Spectora: 'sqft 4500 - 5000')"
+          },
+          {
+            "over": 5000,
+            "upTo": 5500,
+            "feeUsd": 250,
+            "confirmed": true,
+            "evidence": "observed 5001, 5500 sq ft: +$250 (Spectora: 'sqft 5000 - 5500')"
+          },
+          {
+            "over": 5500,
+            "upTo": 6000,
+            "feeUsd": 275,
+            "confirmed": true,
+            "evidence": "observed 5501, 6000 sq ft: +$275 (Spectora: 'sqft 5500 - 6000')"
+          },
+          {
+            "over": 6000,
+            "upTo": 6500,
+            "feeUsd": 300,
+            "confirmed": true,
+            "evidence": "observed 6001, 6500 sq ft: +$300 (Spectora: 'sqft 6000 - 6500')"
+          },
+          {
+            "over": 6500,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "observed 6501, 7000, 7001, 8000 sq ft: base price only. Spectora has no square-footage range above 6500 sq ft, so it adds no fee at all; not relied on until the owner adds ranges or confirms that larger homes should be base price"
+          }
+        ]
+      },
+      "yearBuiltFees": {
+        "ranges": [
+          {
+            "over": 1799,
+            "upTo": 2030,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed built 1800, 1850, 1899, 1900, 1901, 1930, 1950, 1954, 1960, 1961, 1970, 1980, 1990, 1999, 2000, 2010, 2020, 2025, 2026, 2027, 2030: no year-built fee"
+          },
+          {
+            "over": 2030,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "not observed (no home is built after 2030 yet)"
+          }
+        ]
+      },
+      "foundationFees": {
+        "confirmed": true,
+        "feesUsd": {
+          "basement": 0,
+          "slab": 0,
+          "crawlspace": 0
+        },
+        "evidence": "observed basement at 1800 sq ft built 1954; crawlspace at 1800 sq ft built 1954; slab at 1800 sq ft built 1954: no foundation fee (the price equals the same request with no foundation)"
+      },
+      "mileageFees": {
+        "none": true,
+        "confirmed": true,
+        "evidence": "no mileage fee at any of 9 sampled locations (ZIPs 85007, 85122, 85131, 85138, 85142, 85326, 85390, 85701, 86001), from central Phoenix out past 100 miles, including Casa Grande 85122 (Residential: 'mileage 60 - 80') and Eloy 85131 (Residential: 'mileage 80 - 100')"
+      },
+      "addOnPrices": {
+        "flat": true,
+        "confirmed": true,
+        "evidence": "observed Pool/Spa - $50 [239085] $50 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007)"
+      }
+    },
+    "new_construction": {
+      "squareFeetFees": {
+        "ranges": [
+          {
+            "over": 0,
+            "upTo": 500,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed 100, 500 sq ft: no square-footage fee"
+          },
+          {
+            "over": 500,
+            "upTo": 1000,
+            "feeUsd": 25,
+            "confirmed": true,
+            "evidence": "observed 501, 1000 sq ft: +$25 (Spectora: 'sqft 500 - 1000')"
+          },
+          {
+            "over": 1000,
+            "upTo": 1500,
+            "feeUsd": 50,
+            "confirmed": true,
+            "evidence": "observed 1001, 1500 sq ft: +$50 (Spectora: 'sqft 1000 - 1500')"
+          },
+          {
+            "over": 1500,
+            "upTo": 2000,
+            "feeUsd": 75,
+            "confirmed": true,
+            "evidence": "observed 1501, 1800, 2000 sq ft: +$75 (Spectora: 'sqft 1500 - 2000')"
+          },
+          {
+            "over": 2000,
+            "upTo": 2500,
+            "feeUsd": 100,
+            "confirmed": true,
+            "evidence": "observed 2001, 2500 sq ft: +$100 (Spectora: 'sqft 2000 - 2500')"
+          },
+          {
+            "over": 2500,
+            "upTo": 3000,
+            "feeUsd": 125,
+            "confirmed": true,
+            "evidence": "observed 2501, 3000 sq ft: +$125 (Spectora: 'sqft 2500 - 3000')"
+          },
+          {
+            "over": 3000,
+            "upTo": 3500,
+            "feeUsd": 150,
+            "confirmed": true,
+            "evidence": "observed 3001, 3500 sq ft: +$150 (Spectora: 'sqft 3000 - 3500')"
+          },
+          {
+            "over": 3500,
+            "upTo": 4000,
+            "feeUsd": 175,
+            "confirmed": true,
+            "evidence": "observed 3501, 4000 sq ft: +$175 (Spectora: 'sqft 3500 - 4000')"
+          },
+          {
+            "over": 4000,
+            "upTo": 4500,
+            "feeUsd": 200,
+            "confirmed": true,
+            "evidence": "observed 4001, 4250, 4500 sq ft: +$200 (Spectora: 'sqft 4000 - 4500')"
+          },
+          {
+            "over": 4500,
+            "upTo": 5000,
+            "feeUsd": 225,
+            "confirmed": true,
+            "evidence": "observed 4501, 5000 sq ft: +$225 (Spectora: 'sqft 4500 - 5000')"
+          },
+          {
+            "over": 5000,
+            "upTo": 5500,
+            "feeUsd": 250,
+            "confirmed": true,
+            "evidence": "observed 5001, 5500 sq ft: +$250 (Spectora: 'sqft 5000 - 5500')"
+          },
+          {
+            "over": 5500,
+            "upTo": 6000,
+            "feeUsd": 275,
+            "confirmed": true,
+            "evidence": "observed 5501, 6000 sq ft: +$275 (Spectora: 'sqft 5500 - 6000')"
+          },
+          {
+            "over": 6000,
+            "upTo": 6500,
+            "feeUsd": 3,
+            "confirmed": false,
+            "evidence": "observed 6001, 6500 sq ft: +$3 (Spectora: 'sqft 6000 - 6500'). Not relied on: $3 breaks the $25-per-500 pattern ($550 at 6,000 sq ft, then $278 at 6,001), most likely a typo for $300; needs the owner to correct it in Spectora or confirm it"
+          },
+          {
+            "over": 6500,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "observed 6501, 7000, 7001, 8000 sq ft: base price only. Spectora has no square-footage range above 6500 sq ft, so it adds no fee at all; not relied on until the owner adds ranges or confirms that larger homes should be base price"
+          }
+        ]
+      },
+      "yearBuiltFees": {
+        "ranges": [
+          {
+            "over": 1799,
+            "upTo": 2030,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed built 1800, 1850, 1899, 1900, 1901, 1930, 1950, 1954, 1960, 1961, 1970, 1980, 1990, 1999, 2000, 2010, 2020, 2025, 2026, 2027, 2030: no year-built fee"
+          },
+          {
+            "over": 2030,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "not observed (no home is built after 2030 yet)"
+          }
+        ]
+      },
+      "foundationFees": {
+        "confirmed": true,
+        "feesUsd": {
+          "basement": 0,
+          "slab": 0,
+          "crawlspace": 0
+        },
+        "evidence": "observed basement at 1800 sq ft built 1954; crawlspace at 1800 sq ft built 1954; slab at 1800 sq ft built 1954: no foundation fee (the price equals the same request with no foundation)"
+      },
+      "mileageFees": {
+        "none": true,
+        "confirmed": true,
+        "evidence": "no mileage fee at any of 9 sampled locations (ZIPs 85007, 85122, 85131, 85138, 85142, 85326, 85390, 85701, 86001), from central Phoenix out past 100 miles, including Casa Grande 85122 (Residential: 'mileage 60 - 80') and Eloy 85131 (Residential: 'mileage 80 - 100')"
+      },
+      "addOnPrices": {
+        "flat": true,
+        "confirmed": true,
+        "evidence": "observed Pool/Spa - $50 [8224] $50 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007)"
+      }
+    },
+    "condo": {
+      "squareFeetFees": {
+        "ranges": [
+          {
+            "over": 0,
+            "upTo": 500,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed 100, 500 sq ft: no square-footage fee"
+          },
+          {
+            "over": 500,
+            "upTo": 1000,
+            "feeUsd": 25,
+            "confirmed": true,
+            "evidence": "observed 501, 1000 sq ft: +$25 (Spectora: 'sqft 500 - 1000')"
+          },
+          {
+            "over": 1000,
+            "upTo": 1500,
+            "feeUsd": 50,
+            "confirmed": true,
+            "evidence": "observed 1001, 1500 sq ft: +$50 (Spectora: 'sqft 1000 - 1500')"
+          },
+          {
+            "over": 1500,
+            "upTo": 2000,
+            "feeUsd": 75,
+            "confirmed": true,
+            "evidence": "observed 1501, 1800, 2000 sq ft: +$75 (Spectora: 'sqft 1500 - 2000')"
+          },
+          {
+            "over": 2000,
+            "upTo": 2500,
+            "feeUsd": 100,
+            "confirmed": true,
+            "evidence": "observed 2001, 2500 sq ft: +$100 (Spectora: 'sqft 2000 - 2500')"
+          },
+          {
+            "over": 2500,
+            "upTo": 3000,
+            "feeUsd": 125,
+            "confirmed": true,
+            "evidence": "observed 2501, 2750, 3000 sq ft: +$125 (Spectora: 'sqft 2500 - 3000')"
+          },
+          {
+            "over": 3000,
+            "upTo": 3500,
+            "feeUsd": 150,
+            "confirmed": true,
+            "evidence": "observed 3001, 3500 sq ft: +$150 (Spectora: 'sqft 3000 - 3500')"
+          },
+          {
+            "over": 3500,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "observed 3501, 4000, 4001, 4500, 4501, 5000, 5001, 5500, 5501, 6000, 6001, 6500, 6501, 7000, 7001, 8000 sq ft: base price only. Spectora has no square-footage range above 3500 sq ft, so it adds no fee at all; not relied on until the owner adds ranges or confirms that larger homes should be base price"
+          }
+        ]
+      },
+      "yearBuiltFees": {
+        "ranges": [
+          {
+            "over": 1799,
+            "upTo": 2030,
+            "feeUsd": 0,
+            "confirmed": true,
+            "evidence": "observed built 1800, 1850, 1899, 1900, 1901, 1930, 1950, 1954, 1960, 1961, 1970, 1980, 1990, 1999, 2000, 2010, 2020, 2025, 2026, 2027, 2030: no year-built fee"
+          },
+          {
+            "over": 2030,
+            "upTo": null,
+            "feeUsd": null,
+            "confirmed": false,
+            "evidence": "not observed (no home is built after 2030 yet)"
+          }
+        ]
+      },
+      "foundationFees": {
+        "confirmed": true,
+        "feesUsd": {
+          "basement": 0,
+          "slab": 0,
+          "crawlspace": 0
+        },
+        "evidence": "observed basement at 1800 sq ft built 1954; crawlspace at 1800 sq ft built 1954; slab at 1800 sq ft built 1954: no foundation fee (the price equals the same request with no foundation)"
+      },
+      "mileageFees": {
+        "none": true,
+        "confirmed": true,
+        "evidence": "no mileage fee at any of 9 sampled locations (ZIPs 85007, 85122, 85131, 85138, 85142, 85326, 85390, 85701, 86001), from central Phoenix out past 100 miles, including Casa Grande 85122 (Residential: 'mileage 60 - 80') and Eloy 85131 (Residential: 'mileage 80 - 100')"
+      },
+      "addOnPrices": {
+        "flat": true,
+        "confirmed": true,
+        "evidence": "observed Termite Inspection - Free [11804] $0 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007) | Residential Warranty Services - $25 [11803] $25 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007) | Mold Inspection - $200 [31162] $200 at every point (500 sq ft built 2000 ZIP 85007; 3001 sq ft built 1955 ZIP 85007; 8000 sq ft built 1901 slab ZIP 85007)"
+      }
+    }
+  }
+}

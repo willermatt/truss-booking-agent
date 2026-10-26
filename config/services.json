@@ -1,0 +1,67 @@
+{
+  "verifiedAt": "2026-10-24",
+  "verifiedFrom": "Phase 0 discovery of https://app.spectora.com/home-inspectors/truss-home-inspections/schedule (labels, IDs and prices read from the live page and its data)",
+  "services": [
+    {
+      "key": "residential",
+      "label": "Residential Home Inspection",
+      "spectoraId": 13628,
+      "checkboxId": "service-checkbox__ResidentialHomeInspection",
+      "checkboxIdVerified": true,
+      "basePriceUsd": 300,
+      "aliases": ["home inspection", "residential", "residential inspection", "residential home inspection", "single family", "single-family", "single family home", "buyer inspection", "full inspection"],
+      "addOns": [
+        { "key": "termite", "label": "Termite Inspection - Free", "spectoraId": 7452, "checkboxId": "service-addon-checkbox__TermiteInspectionFree", "checkboxIdVerified": true, "priceUsd": 0, "aliases": ["termite", "termite inspection", "wdo", "wood destroying insects"] },
+        { "key": "pool_spa", "label": "Pool/Spa Inspection - $50", "spectoraId": 7451, "checkboxId": "service-addon-checkbox__PoolSpaInspection50", "checkboxIdVerified": true, "priceUsd": 50, "aliases": ["pool", "spa", "pool/spa", "pool and spa", "pool spa", "pool inspection"] },
+        { "key": "recallchek", "label": "Residential Warranty Services - $25", "spectoraId": 10441, "checkboxId": "service-addon-checkbox__ResidentialWarrantyServices25", "checkboxIdVerified": true, "priceUsd": 25, "aliases": ["recallchek", "recall chek", "recall check", "appliance recall", "90 day warranty", "90-day warranty", "residential warranty services"] },
+        { "key": "mold", "label": "Mold Inspection - $200", "spectoraId": 17336, "checkboxId": "service-addon-checkbox__MoldInspection200", "checkboxIdVerified": true, "priceUsd": 200, "aliases": ["mold", "mold inspection", "mold testing", "mold test"] }
+      ]
+    },
+    {
+      "key": "one_year_warranty",
+      "label": "1 Year Warranty Inspection",
+      "spectoraId": 245973,
+      "checkboxId": "service-checkbox__1YearWarrantyInspection",
+      "checkboxIdVerified": true,
+      "basePriceUsd": 250,
+      "aliases": ["1-year warranty", "1 year warranty", "one year warranty", "one-year warranty", "11 month", "11-month", "11 month warranty", "11-month warranty", "builder warranty", "warranty inspection", "1 year warranty inspection"],
+      "addOns": [
+        { "key": "pool_spa", "label": "Pool/Spa - $50", "spectoraId": 239085, "checkboxId": "service-addon-checkbox__PoolSpa50", "checkboxIdVerified": false, "priceUsd": 50, "aliases": ["pool", "spa", "pool/spa", "pool and spa", "pool spa", "pool inspection"] }
+      ]
+    },
+    {
+      "key": "new_construction",
+      "label": "New Construction",
+      "spectoraId": 14912,
+      "checkboxId": "service-checkbox__NewConstruction",
+      "checkboxIdVerified": true,
+      "basePriceUsd": 275,
+      "aliases": ["new construction", "new construction inspection", "new build", "new home", "new-build"],
+      "addOns": [
+        { "key": "pool_spa", "label": "Pool/Spa - $50", "spectoraId": 8224, "checkboxId": "service-addon-checkbox__PoolSpa50", "checkboxIdVerified": false, "priceUsd": 50, "aliases": ["pool", "spa", "pool/spa", "pool and spa", "pool spa", "pool inspection"] }
+      ]
+    },
+    {
+      "key": "condo",
+      "label": "Condo Inspection",
+      "spectoraId": 20436,
+      "checkboxId": "service-checkbox__CondoInspection",
+      "checkboxIdVerified": true,
+      "basePriceUsd": 225,
+      "aliases": ["condo", "condo inspection", "condominium"],
+      "addOns": [
+        { "key": "termite", "label": "Termite Inspection - Free", "spectoraId": 11804, "checkboxId": "service-addon-checkbox__TermiteInspectionFree", "checkboxIdVerified": false, "priceUsd": 0, "aliases": ["termite", "termite inspection", "wdo", "wood destroying insects"] },
+        { "key": "recallchek", "label": "Residential Warranty Services - $25", "spectoraId": 11803, "checkboxId": "service-addon-checkbox__ResidentialWarrantyServices25", "checkboxIdVerified": false, "priceUsd": 25, "aliases": ["recallchek", "recall chek", "recall check", "appliance recall", "90 day warranty", "90-day warranty", "residential warranty services"] },
+        { "key": "mold", "label": "Mold Inspection - $200", "spectoraId": 31162, "checkboxId": "service-addon-checkbox__MoldInspection200", "checkboxIdVerified": false, "priceUsd": 200, "aliases": ["mold", "mold inspection", "mold testing", "mold test"] }
+      ]
+    }
+  ],
+  "notOffered": [
+    { "aliases": ["sewer", "sewer scope", "sewer line", "sewer inspection"], "reason": "Sewer scope is referred out and is not offered in the online scheduler." },
+    { "aliases": ["multi-family", "multifamily", "multi family", "multi-family inspection", "duplex", "triplex", "fourplex"], "reason": "Multi-Family Inspection is 'Call for Pricing' and is never booked by the agent." },
+    { "aliases": ["pre-drywall", "pre drywall", "predrywall"], "reason": "Pre-drywall inspections are not offered." }
+  ],
+  "ambiguous": [
+    { "aliases": ["warranty"], "reason": "'warranty' could mean the 1 Year Warranty Inspection service or the Residential Warranty Services add-on (90-day warranty and RecallChek). Say which." }
+  ]
+}

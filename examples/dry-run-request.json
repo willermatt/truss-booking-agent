@@ -1,0 +1,9 @@
+{
+  "property": { "street": "1700 W Washington St", "city": "Phoenix", "state": "AZ", "zip": "85007" },
+  "customer": { "firstName": "Dry", "lastName": "Run", "email": "dry-run@example.com", "phone": "6025550100" },
+  "appointment": { "date": "2026-11-18", "time": "08:00" },
+  "services": ["Residential Home Inspection"],
+  "addOns": ["termite"],
+  "squareFeet": 1800,
+  "yearBuilt": 1954
+}

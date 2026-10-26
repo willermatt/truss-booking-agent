@@ -1,0 +1,7 @@
+{
+  "property": { "street": "EDIT: street line of the test property, e.g. 1700 W Washington St", "city": "Phoenix", "state": "AZ", "zip": "85007" },
+  "customer": { "firstName": "EDIT", "lastName": "EDIT", "email": "EDIT: an inbox you control", "phone": "EDIT: a phone you control" },
+  "appointment": { "date": "EDIT: YYYY-MM-DD with an opening", "time": "08:00" },
+  "services": ["Residential Home Inspection"],
+  "notes": "TEST BOOKING by the Truss booking agent. Do not perform; cancel after checking."
+}

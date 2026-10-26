@@ -1,0 +1,19 @@
+# systemd unit for the booking API (Ubuntu). Copy to /etc/systemd/system/, then:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now truss-api
+[Unit]
+Description=Truss booking agent API
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+User=truss
+WorkingDirectory=/opt/truss-booking-agent
+EnvironmentFile=/etc/truss.env
+ExecStart=/usr/bin/npm run api
+# Exit code 3 means a browser could not be stopped: do NOT restart automatically; check it with the owner CLI.
+Restart=on-failure
+RestartPreventExitStatus=3
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
